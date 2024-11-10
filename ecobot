@@ -1,0 +1,33 @@
+import telebot
+import random
+import time
+
+TOKEN = 'TOKEN'
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start', 'hello'])
+def start(message):
+    bot.send_message(message.chat.id, 'привет я эко бот выбери свою группу 1 - подросток который хочет меньше загрезнять экосистему но не знает с чего начать 2 - взрослый человек который тоже хочет меньше загрезнять экосистему но не знает с чего начать 3 - люди которые заботятся о экосистеме но хотят узнать новые способы меньше загрязнять экосистему')
+
+#для текста
+@bot.message_handler(content_types=['text'])
+def start(message):
+    if message.text == '1':
+        bot.send_message(message.chat.id, 'начни экономнее использовать бумагу точнее по максимаму, ходи до школы(или уневерситета) пешком, попробуй меньше покупать еду в пластиковых пакетах или с мусором типо конфет(у них фантики), ')
+    elif message.text == '2':
+        bot.send_message(message.chat.id, 'начни экономнее использовать бумагу точнее по максимаму, ходи больше пешком (или меньше ездить на машинах), попробуй меньше покупать еду в пластиковых пакетах или с мусором типо конфет(у них фантики),')
+    elif message.text == '3':
+        bot.send_message(message.chat.id, 'Экономия воды и электроэнергии, Отказ от пластика, Раздельный сбор мусора, Сдача использованных батареек в пункты приёма для последующей переработки, Участие в лесовосстановлении.(что бы узнать больше о способе ведите его пример:напишите(любой способ например)Отказ от пластика и бот скинет ссылку чем это помогает)')
+    elif message.text == 'Экономия воды и электроэнергии':
+        bot.send_message(message.chat.id, 'https://barnaul.press/news/vyklyuchay-ekonom-beregi-desyat-privychek-kotorye-sokhranyat-ekologiyu-zemli.html')
+    elif message.text == 'Отказ от пластика':
+        bot.send_message(message.chat.id, 'https://style.rbc.ru/life/5da6c3019a7947039f27efa5')
+    elif message.text == 'Раздельный сбор мусора':
+        bot.send_message(message.chat.id, 'https://rcycle.net/musor/razdelnyj-sbor/zachem-sortirovat-othody')
+    elif message.text == 'Сдача использованных батареек в пункты приёма для последующей переработки':
+        bot.send_message(message.chat.id, 'https://laboratoria.by/stati/utilizatsiya-batareyek')
+    elif message.text == 'Участие в лесовосстановлении':
+        bot.send_message(message.chat.id, 'https://изменимир.рф/forest/')
+
+bot.polling()
